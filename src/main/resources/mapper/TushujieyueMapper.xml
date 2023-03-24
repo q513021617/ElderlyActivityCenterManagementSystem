@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.TushujieyueInfoDao">
+
+    <select id="checkRepeat" resultType="java.lang.Integer">
+        select count(id) from `tushujieyue_info` where ${column} = #{value}
+        <if test="id != null">
+            and id != #{id}
+        </if>
+    </select>
+
+  <select id="findByTushubianhaozj" resultType="com.example.vo.TushujieyueInfoVo">
+        select * from `tushujieyue_info` where `tushubianhao` = #{username}
+    </select>
+
+    <select id="findByTushubianhao" resultType="com.example.vo.TushujieyueInfoVo">
+        select `tushujieyue_info`.* from `tushujieyue_info`
+        where 1 = 1
+        <if test="tushubianhao != null and tushubianhao != '' and tushubianhao != 'all'">
+            and 
+			(
+			`tushujieyue_info`.`tushubianhao` like concat('%', #{tushubianhao}, '%')
+			 or `tushujieyue_info`.`tushubianhao` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`mingcheng` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`zuozhe` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`chubanshe` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`chubannianfen` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`kucun` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`jieyueren` like concat('%', #{tushubianhao}, '%')             or `tushujieyue_info`.`jieyueshuliang` like concat('%', #{tushubianhao}, '%')             
+			)
+			
+        </if>
+        order by `tushujieyue_info`.id
+    </select>
+	<select id="findByTushubianhaolist2" resultType="com.example.vo.TushujieyueInfoVo">
+        select `tushujieyue_info`.* from `tushujieyue_info`
+        where 1 = 1
+        <if test="tushubianhao != null and tushubianhao != '' and tushubianhao != 'all'">
+            and `tushujieyue_info`.`tushubianhao` like concat('%', #{tushubianhao}, '%')
+        </if>
+		<if test="jieyueren != null and jieyueren != '' and jieyueren != 'all'">
+            and `tushujieyue_info`.`jieyueren` like concat('%', #{jieyueren}, '%')
+        </if>
+        order by `tushujieyue_info`.id
+    </select>        <!--list23N-->
+    <select id="count" resultType="Integer">
+        select count(id) from `tushujieyue_info`
+    </select>
+</mapper>
+

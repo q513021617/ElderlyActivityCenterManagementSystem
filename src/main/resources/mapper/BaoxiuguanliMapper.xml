@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.dao.BaoxiuguanliInfoDao">
+
+    <select id="checkRepeat" resultType="java.lang.Integer">
+        select count(id) from `baoxiuguanli_info` where ${column} = #{value}
+        <if test="id != null">
+            and id != #{id}
+        </if>
+    </select>
+
+  <select id="findByBaoxiurenzj" resultType="com.example.vo.BaoxiuguanliInfoVo">
+        select * from `baoxiuguanli_info` where `baoxiuren` = #{username}
+    </select>
+
+    <select id="findByBaoxiuren" resultType="com.example.vo.BaoxiuguanliInfoVo">
+        select `baoxiuguanli_info`.* from `baoxiuguanli_info`
+        where 1 = 1
+        <if test="baoxiuren != null and baoxiuren != '' and baoxiuren != 'all'">
+            and 
+			(
+			`baoxiuguanli_info`.`baoxiuren` like concat('%', #{baoxiuren}, '%')
+			 or `baoxiuguanli_info`.`biaoti` like concat('%', #{baoxiuren}, '%')             or `baoxiuguanli_info`.`baoxiuneirong` like concat('%', #{baoxiuren}, '%')             or `baoxiuguanli_info`.`baoxiuhuifu` like concat('%', #{baoxiuren}, '%')             or `baoxiuguanli_info`.`baoxiuren` like concat('%', #{baoxiuren}, '%')             
+			)
+			
+        </if>
+        order by `baoxiuguanli_info`.id
+    </select>
+	<select id="findByBaoxiurenlist2" resultType="com.example.vo.BaoxiuguanliInfoVo">
+        select `baoxiuguanli_info`.* from `baoxiuguanli_info`
+        where 1 = 1
+        <if test="baoxiuren != null and baoxiuren != '' and baoxiuren != 'all'">
+            and `baoxiuguanli_info`.`baoxiuren` like concat('%', #{baoxiuren}, '%')
+        </if>
+		<if test="baoxiuren != null and baoxiuren != '' and baoxiuren != 'all'">
+            and `baoxiuguanli_info`.`baoxiuren` like concat('%', #{baoxiuren}, '%')
+        </if>
+        order by `baoxiuguanli_info`.id
+    </select>        <!--list23N-->
+    <select id="count" resultType="Integer">
+        select count(id) from `baoxiuguanli_info`
+    </select>
+</mapper>
+

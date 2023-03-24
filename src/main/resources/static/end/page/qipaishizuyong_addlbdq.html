@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT"/>
+    <title>棋牌室租用</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="stylesheet" href="../css/font-awesome.css">
+    <link rel="stylesheet" href="../css/element/index.css">
+	<link rel="stylesheet" href="../css/hsg.css">
+
+   
+</head>
+<body>
+<div id="wrapper" v-cloak>
+    <div >
+        <div style="padding: 0 20px">
+            <div>
+                <div style="color: #666; font-weight: bold; border-bottom: 1px solid #ccc; padding: 10px 0; margin-bottom: 20px; font-size: 30px;">棋牌室租用添加</div>
+            </div>
+            <div style="margin-top: 10px">
+                <div style="border: 1px solid #ff6b31;">
+                    <div style="padding: 5px; border-bottom: 1px solid #ff6b31; color: white; background-color: #ff6b31;">棋牌室租用添加</div>
+                    <br>
+           
+            <form class="form-horizontal">
+                <input type="hidden" id="id" name="id" v-model="entity.id">
+               <div  class="form-group"><label class="col-sm-3 control-label">棋牌室编号</label><div class="col-sm-7"><input type="text" class="form-control" v-model="entity.qipaishibianhao" style="width: 160px" placeholder="请输入棋牌室编号" id="qipaishibianhao" disabled ></div></div>		<div  class="form-group"><label class="col-sm-3 control-label">棋牌室名称</label><div class="col-sm-7"><input type="text" class="form-control" v-model="entity.qipaishimingcheng" style="width: 160px" placeholder="请输入棋牌室名称" id="qipaishimingcheng" disabled ></div></div>		<div  class="form-group"><label class="col-sm-3 control-label">价格</label><div class="col-sm-7"><input type="text" class="form-control" v-model="entity.jiage" style="width: 160px" placeholder="请输入价格" id="jiage" disabled ></div></div>		<div  class="form-group"><label class="col-sm-3 control-label">地址</label><div class="col-sm-7"><input type="text" class="form-control" v-model="entity.dizhi" style="width: 160px" placeholder="请输入地址" id="dizhi" disabled ></div></div>		<div  class="form-group"><label class="col-sm-3 control-label">租用人</label><div class="col-sm-7"><input type="text" class="form-control" v-model="entity.zuyongren" style="width: 160px" placeholder="请输入租用人" id="zuyongren"></div></div>		<div  class="form-group"><label class="col-sm-3 control-label">租用时间</label><div class="col-sm-7"><div class="block"><el-date-picker v-model="entity.zuyongshijian" id="zuyongshijian" type="datetime" clearable value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"></el-date-picker></div></div></div>		
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" @click="update">保存</button>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="../js/jquery-1.10.2.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/nav.js"></script>
+<script src="../js/my.js"></script>
+<script src="../js/vue2.6.11/vue.min.js"></script>
+<script src="../js/vue2.6.11/axios.js"></script>
+<script src="../js/element/index.js"></script>
+
+<script>
+    function checkValid(entity) {
+       
+        
+        return true;
+    }
+   
+    new Vue({
+        el: '#wrapper',
+        data: {
+            qipaishizuyongid: 0,
+           //hsgdanhejisuan
+            qipaishizuyongInfo: {},
+            isShow: false,
+            user: {},
+            entity:{
+            },
+        },
+        created: function () {
+            axios.get('/auth').then(res => {
+                if (res.data.code === '0') {
+                    this.user = res.data.data;
+                }
+            });
+            this.qipaishixinxiid = this.getQueryVariable('qipaishixinxiid');
+            this.loadQipaishizuyongInfo();
+			this.user = JSON.parse(localStorage.getItem('user'));
+			if (this.user.level === "老年人"){this.entity.zuyongren = this.user.yonghuming;}
+        },
+        methods: {
+            loadQipaishizuyongInfo() {
+                axios.get("/qipaishixinxiInfo/" + this.qipaishixinxiid).then(res => {
+                    if (res.data.code === '0') {
+                        const qipaishixinxi = res.data.data;
+                        this.entity = {qipaishibianhao:qipaishixinxi.qipaishibianhao,qipaishimingcheng:qipaishixinxi.qipaishimingcheng,jiage:qipaishixinxi.jiage,dizhi:qipaishixinxi.dizhi}
+						if (this.user.level === "老年人"){this.entity.zuyongren = this.user.yonghuming;}
+						//tupianloadtb
+						//dhjsuanxx
+                    } else {
+                        alert(res.data.msg);
+                    }
+                });
+            },
+			getQueryVariable(variable) {
+                let query = window.location.search.substring(1);
+                let vars = query.split("&");
+                for (let i = 0; i < vars.length; i++) {
+                    let pair = vars[i].split("=");
+                    if (pair[0] === variable) {
+                        return pair[1];
+                    }
+                }
+                return '';
+            },
+			//yofujifsuan2
+           
+			
+			//m_liangbuinit
+			
+			update() {
+                if (checkValid(this.entity)) {
+                    axios.post(
+                        "/qipaishizuyongInfo", this.entity
+                    ).then(res => {
+					//kuabiaogaizhi1
+                        if (res.data.code === '0') {
+                            msg('success', '添加成功');
+                        } else {
+                            msg('error', res.data.msg);
+                        }
+                    })
+                }
+            },
+			//m_tupiansccsbaul
+           
+            downModel() {
+                location.href = '/qipaishizuyongInfo/getExcelModel';
+            },
+            clickUpload: function (e) {
+                if (this.user.level === "管理员")
+                {}
+                else
+                {
+                    msg('warning', '你没有权限操作');
+                    return;
+                }
+            },
+            upload: function () {
+                let files = this.$refs.file.files;
+                for (let i = 0; i < files.length; i++) {
+                    let formData = new FormData();
+                    formData.append('file', files[i]);
+                    axios.post('/qipaishizuyongInfo/upload', formData, {
+                        'Content-Type': 'multipart/form-data'
+                    }).then(res => {
+                        if (res.data.code === '0') {
+                            msg('success', '批量导入成功');
+                            this.loadTable(1);
+                        } else {
+                            msg('error', res.data.msg);
+                        }
+                    })
+                }
+            },
+			
+			//youscwenjian
+            
+			//x2suilafuxzhi
+           
+        }
+    })
+</script>
+</body>
+</html>

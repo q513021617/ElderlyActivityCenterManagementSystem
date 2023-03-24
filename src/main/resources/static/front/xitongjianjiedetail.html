@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html class="js cssanimations">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>系统简介</title>
+	<link rel="stylesheet" href="./qtimages/amazeui.min.css">
+	<link rel="stylesheet" href="./qtimages/app.css">
+	<link rel="stylesheet" href="./qtimages/touch.css">
+	<link rel="stylesheet" href="./qtimages/layout.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/slider.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/video.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/component.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/style.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/remodal.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/caddy.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/licheng.css">
+	<link rel="stylesheet" href="./qtimages/sl_common_form.css">
+</head>
+<body style="">
+<div  id="wrapper">
+<script src="qttop.js"></script>
+<script src="bht.js"></script>
+ <div class="contentc">
+        <div class="box">
+            <div class="contentbt">系统简介</div>
+			<div class="footer"></div>
+            <div class="contentc_c">
+                <ul>
+ 					<div class="content-form" >
+							
+							
+				 <table width="97%" border="0" align="center" cellpadding="3" cellspacing="1" bordercolor="#67B41A" style="border-collapse:collapse" class="newsline">
+                            <tr>
+                                <td height="74" align="center"><font style="color:#009966; font-size:18px;font-weight:bold" >{{xitongjianjieInfo.leibie}}</font></td>
+                            </tr>
+                            <tr>
+                                <td height="104" v-html="xitongjianjieInfo.neirong"></td>
+                            </tr>
+                            <tr>
+                                <td align="right"><input type="button" onClick="javaScript:history.back();" value="返回" class="content-form-signup" /></td>
+                            </tr>
+                        </table>      							
+							
+						</div>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script src="./qtimages/jquery.min.js"></script>
+<script type="text/javascript" src="./qtimages/pingzi_video.js"></script>
+<script src="./qtimages/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/swiper.animate.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/main.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./qtimages/amazeui.min.js"></script>
+<script type="text/javascript" src="./qtimages/font_size.js"></script>
+<script type="text/javascript" src="./qtimages/modernizr.custom.js"></script>
+<script type="text/javascript" src="./qtimages/classie.js"></script>
+<script type="text/javascript" src="./qtimages/uisearch.js"></script>
+<script type="text/javascript" src="./qtimages/jQuery.rTabs.js"></script>
+<script src="./qtimages/remodal.js"></script>
+<script src="./qtimages/caddy.js"></script>
+<script src="./qtimages/huakuai.js"></script>
+<script> new UISearch( document.getElementById( 'sb-search' ) );</script>
+<script src="qtdown.js"></script>
+</div>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/swiper-5.4.5/swiper.min.js"></script>
+<script src="js/vue2.6.11/axios.js"></script>
+<script src="js/vue2.6.11/vue.min.js"></script>
+<script src="js/my.js"></script>
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/element/index.css">
+<link rel="stylesheet" href="css/hsg.css">
+<script>
+    new Vue({
+        el: '#wrapper',
+        data: {
+            isCollect: false,
+            xitongjianjieid: 0,
+            mainSrc: '',
+            leibie:'',
+            xitongjianjieInfo: {},
+            comments: [],
+            commentInfo: {
+                xitongjianjieid: 0,
+                content: ''
+            },
+            isShow: false,
+            user: {},
+            searchText: null,
+        },
+
+        created: function () {
+            this.leibie = this.getQueryVariable('lb');
+            axios.get('/auth').then(res => {
+                if (res.data.code === '0') {
+                    this.user = res.data.data;
+                }
+            });
+            this.loadXitongjianjieInfo();
+            this.loadComments();
+        },
+
+        methods: {
+            searchXitongjianjie(text) {   // 根据关键字查询商品
+                if(text) {
+                    location.href = '/front/xitongjianjielisttp.html?text=' + text;
+                }else {
+                    location.href = '/front/xitongjianjielisttp.html';
+                }
+            },
+            loadXitongjianjieInfo() {
+                axios.get("/xitongjianjieInfo/detailqt/" + this.leibie).then(res => {
+                    if (res.data.code === '0') {
+                        this.xitongjianjieInfo = res.data.data;
+                        this.mainSrc = '/front/img/goods/default.png';
+                    } else {
+                        alert(res.data.msg);
+                    }
+                });
+            },
+            
+            getQueryVariable(variable) {
+                let query = window.location.search.substring(1);
+                let vars = query.split("&");
+                for (let i = 0; i < vars.length; i++) {
+                    let pair = vars[i].split("=");
+                    if (pair[0] === variable) {
+                        return pair[1];
+                    }
+                }
+                return '';
+            },
+            mouseOver(id) {
+                $('#main-img-id').attr('src', '/files/download/' + id);
+            },
+            
+            dianzan_d_click() {
+                axios.put('/xitongjianjieInfo', {id: this.xitongjianjieid, dianzan_d: 1}).then(res => {
+                    if (res.data.code === '0') {
+                        alert('点赞+1');
+                        this.loadXitongjianjieInfo();
+                    } else {
+                        alert(res.data.msg)
+                    }
+                })
+            },
+            dianzan_c_click() {
+                axios.put('/xitongjianjieInfo', {id: this.xitongjianjieid, dianzan_c: 1}).then(res => {
+                    if (res.data.code === '0') {
+                        alert('反对+1');
+                        this.loadXitongjianjieInfo();
+                    } else {
+                        alert(res.data.msg)
+                    }
+                })
+            },
+           
+
+            logout() {
+                axios.get("/logout").then(res => {
+                    if(res.data.code === '0') {
+                        location.href = '/front/index.html';
+                    } else {
+                        msg('error', res.data.msg);
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

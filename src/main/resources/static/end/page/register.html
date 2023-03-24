@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>老年活动中心管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../images/css/snow.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="../images/css/style2.css" rel="stylesheet" type="text/css" media="all" />
+    <style type="text/css">
+        <!--
+        body,td,th {
+            font-size: 0.28em;
+        }
+        -->
+    </style></head>
+<body>
+<div id="app">
+    <div class="snow-container"  >
+        <div class="snow foreground"></div>
+        <div class="snow foreground layered"></div>
+        <div class="snow middleground"></div>
+        <div class="snow middleground layered"></div>
+        <div class="snow background"></div>
+        <div class="snow background layered"></div>
+    </div>
+    <div class="top-buttons-agileinfo">
+        <a href="/" >返回登录</a>
+    </div>
+    <br>
+    <br>
+    <h1>老年活动中心管理系统</h1>
+    <div class="main-agileits">
+        <div class="form-w3-agile">
+            <h2 class="sub-agileits-w3layouts">注册新账号</h2>
+            <form name="form1" class="form-validate mb-4">
+                <input type="text" name="username" placeholder="UserName" required="" id="username" v-model="user.username"/>
+                <input type="password" name="pwd" placeholder="Password" required="" id="pwd" v-model="user.mima" />
+                <input type="text" name="name" placeholder="Name" required="" id="name" v-model="user.name" />
+                <input type="radio" name="sex" value="男" required="" id="sex" v-model="user.sex" />男
+                <input type="radio" name="sex" value="女" required="" id="sex" v-model="user.sex" />女
+                <input type="tel" name="phone" placeholder="Phone" required="" id="phone" v-model="user.phone" />
+                <input type="text" name="address" placeholder="Address" required="" id="address" v-model="user.address" />
+                <select name="level" id="level" style="width:100%; height:50px;" v-model="user.level">
+                    <option value="管理员" name="level">管理员</option>
+                    <option value="老年人" name="level">老年人</option>
+                </select>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" name="yzm" placeholder="验证码" required="" id="yzm"  />
+                        </td>
+                        <td valign="bottom">
+                            <input type="text" id="code" style="cursor:pointer; width:100px; height:40px; padding-top:10px;" />
+

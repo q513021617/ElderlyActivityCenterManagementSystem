@@ -1,0 +1,107 @@
+.sb-search {
+    position: relative;
+    margin-top: 10px;
+    width: 0%;
+    min-width: 40px;
+    height: 40px;
+    float: right;
+    overflow: hidden;
+    -webkit-transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    transition: width 0.3s;
+    -webkit-backface-visibility: hidden;
+}
+.sb-search input{
+    border: none;
+    box-shadow: none;
+}
+.sb-search-input {
+    border-radius: 99px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: none;
+    background: #fff;
+    width: 100%;
+    height: 40px;
+    margin: 0;
+    z-index: 10;
+    padding: 10px 65px 10px 20px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #2c3e50;
+}
+
+.sb-search-input::-webkit-input-placeholder {
+    color: #D8D8D8;
+}
+
+
+
+.sb-icon-search,
+.sb-search-submit  {
+    width: 30px;
+    height: 30px;
+    display: block;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 0;
+    margin: 0;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sb-search-submit {
+    background: #fff; /* IE needs this */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+    filter: alpha(opacity=0); /* IE 5-7 */
+    opacity: 0;
+    color: transparent;
+    border: none;
+    outline: none;
+    z-index: -1;
+}
+
+.sb-icon-search {
+    background: url("sous.png") no-repeat center #fff;
+    z-index: 90;
+    display: block;
+    width: 30px;
+    height: 30px;
+    speak: none;
+    border-radius: 99px;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.sb-search-open{
+    border: 1px solid #f2f2f2;
+    border-radius: 99px;
+}
+
+/* Open state */
+.sb-search.sb-search-open,
+.no-js .sb-search {
+    width: 100%;
+}
+
+.sb-search.sb-search-open .sb-icon-search,
+.no-js .sb-search .sb-icon-search {
+    display: block;
+    background: url("sous2.png") no-repeat center #63B94C;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 99px;
+    z-index: 11;
+}
+
+.sb-search.sb-search-open .sb-search-submit,
+.no-js .sb-search .sb-search-submit {
+    z-index: 90;
+}

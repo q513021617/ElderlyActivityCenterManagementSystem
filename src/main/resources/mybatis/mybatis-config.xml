@@ -1,0 +1,8 @@
+<configuration>
+    <settings>
+        <!-- 自动转换列名到驼峰式 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!-- 自动表名生成策略 -->
+    <mapper class="tk.mybatis.mapper.generator.MapperBuilder"/>
+</configuration>

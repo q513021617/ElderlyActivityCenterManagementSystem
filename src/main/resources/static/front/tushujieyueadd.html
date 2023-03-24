@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html class="js cssanimations"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>图书借阅</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="./qtimages/amazeui.min.css">
+	<link rel="stylesheet" href="./qtimages/app.css">
+	<link rel="stylesheet" href="./qtimages/touch.css">
+	<link rel="stylesheet" href="./qtimages/layout.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/slider.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/video.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/component.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/style.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/remodal.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/remodal-default-theme.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/caddy.css">
+    <link rel="stylesheet" type="text/css" href="./qtimages/licheng.css">
+	<link rel="stylesheet" href="./qtimages/sl_common_form.css">
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"></head>
+<body style="">
+<div id="wrapper">
+<script src="qttop.js"></script>
+<script src="bht.js"></script>
+ <div class="contentc">
+        <div class="box">
+            <div class="contentbt">图书借阅</div>
+			<div class="footer"></div>
+            <div class="contentc_c">
+                <ul>
+ 					<div class="content-form" >
+					<div style="padding: 0 20px">
+
+
+									<!-- 表格主体-->
+									<div style="margin-top: 10px">
+										<div style="border: 1px solid #ff6b31;">
+											<div style="padding: 5px; border-bottom: 1px solid #ff6b31; color: white; background-color: #ff6b31;">图书借阅</div>
+											<div style="border: 1px solid #ccc; padding: 10px">
+												<div class="row">
+													<div class="col-md-12">
+														<form class="form-horizontal">
+															<input type="hidden" v-model="entity.id">
+															<table class="table table-striped table-bordered table-hover">
+																<tr ><td>图书编号</td><td><input type="text" class="form-control" v-model="entity.tushubianhao" style="width: 160px" placeholder="请输入图书编号" id="tushubianhao" disabled ></td></tr>
+		<tr ><td>名称</td><td><input type="text" class="form-control" v-model="entity.mingcheng" style="width: 160px" placeholder="请输入名称" id="mingcheng" disabled ></td></tr>
+		<tr ><td>作者</td><td><input type="text" class="form-control" v-model="entity.zuozhe" style="width: 160px" placeholder="请输入作者" id="zuozhe" disabled ></td></tr>
+		<tr ><td>出版社</td><td><input type="text" class="form-control" v-model="entity.chubanshe" style="width: 160px" placeholder="请输入出版社" id="chubanshe" disabled ></td></tr>
+		<tr ><td>出版年份</td><td><input type="text" class="form-control" v-model="entity.chubannianfen" style="width: 160px" placeholder="请输入出版年份" id="chubannianfen" disabled ></td></tr>
+		<tr ><td>库存</td><td><input type="text" class="form-control" v-model="entity.kucun" style="width: 160px" placeholder="请输入库存" id="kucun" disabled ></td></tr>
+		<tr ><td>借阅人</td><td><input type="text" class="form-control" v-model="entity.jieyueren" style="width: 160px" placeholder="请输入借阅人" id="jieyueren"></td></tr>
+		<tr ><td>借阅数量</td><td><input type="text" class="form-control" v-model="entity.jieyueshuliang" style="width: 160px" placeholder="请输入借阅数量" id="jieyueshuliang"></td></tr>
+		<tr ><td>借阅时间</td><td><div class="block"><el-date-picker v-model="entity.jieyueshijian" id="jieyueshijian" type="datetime" clearable value-format="yyyy-MM-dd HH:mm:ss" placeholder="选择日期时间"></el-date-picker></div></td></tr>
+		
+															</table>
+														</form>
+														<div style="text-align: center">
+															<button type="button" class="btn btn-primary" v-on:click="update()">保存</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- 表格主体结束-->
+								</div>
+					</div>
+                </ul>
+            </div>
+        </div>
+    </div>
+<script src="./qtimages/jquery.min.js"></script>
+<script type="text/javascript" src="./qtimages/pingzi_video.js"></script>
+<script src="./qtimages/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/swiper.animate.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./qtimages/main.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./qtimages/amazeui.min.js"></script>
+<script type="text/javascript" src="./qtimages/font_size.js"></script>
+<script type="text/javascript" src="./qtimages/modernizr.custom.js"></script>
+<script type="text/javascript" src="./qtimages/classie.js"></script>
+<script type="text/javascript" src="./qtimages/uisearch.js"></script>
+<script type="text/javascript" src="./qtimages/jQuery.rTabs.js"></script>
+<script src="./qtimages/remodal.js"></script>
+<script src="./qtimages/caddy.js"></script>
+<script src="./qtimages/huakuai.js"></script>
+<script> new UISearch( document.getElementById( 'sb-search' ) );</script>
+<script src="qtdown.js"></script>
+<!--daipxingxlun-->
+</div>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/nav.css">
+<link rel="stylesheet" href="css/font-awesome.css">
+<link rel="stylesheet" href="css/element/index.css">
+<link rel="stylesheet" href="css/hsg.css">
+<script src="js/my.js"></script>
+<script src="js/vue2.6.11/vue.min.js"></script>
+<script src="js/vue2.6.11/axios.js"></script>
+<script src="js/element/index.js"></script>
+<script>
+    function checkValid(entity) {
+        if (entity.jieyueshuliang && entity.jieyueshuliang !== ""){let reg = /^[0-9]+.?[0-9]*$/; if (!reg.test(entity.jieyueshuliang)) {alert("借阅数量必需数字型");return false;}}
+if (parseInt(entity.jieyueshuliang) > parseInt(entity.kucun)) {alert("对不起，库存必需大于借阅数量");return false;}
+        return true;
+    }
+    new Vue({
+        el: '#wrapper',
+        data: {
+
+            authority: [],
+            permission: [],
+            storeUser: JSON.parse(localStorage.getItem("user")),
+            name: '',
+            user: {},
+			tushujieyueInfo: {},
+			//hsgdanhejisuan
+			//youtupianimrl
+            objs: [],
+           
+			//youtupianavt
+			//youxia2sui
+			//youxxiabiaoxduan
+            entity: {
+               //youtupianflst
+            }
+        },
+        created:
+            function () {
+				this.tushuxinxiid = this.getQueryVariable('tushuxinxiid');
+				this.loadTushujieyueInfo();
+               
+                this.user = JSON.parse(localStorage.getItem('user'));
+                axios.get("/permission/3").then(res => {
+                    if (res.data.code === '0') {
+                        this.permission = res.data.data;
+                    } else {
+                        msg('error', res.data.msg);
+                    }
+                });
+                axios.get("/authority").then(res => {
+                    if (res.data.code === '0') {
+                        this.authority = res.data.data;
+                    } else {
+                        msg('error', res.data.msg);
+                    }
+                });
+				//youcreatexia2sui
+				//youffxiaxbiaoxduan
+				if (this.user.level === "老年人"){this.entity.jieyueren = this.user.yonghuming;}
+				//youtixing
+				//ssxessioxnduqxu
+            },
+        methods: {
+
+            //m_liangbuinit
+			
+			loadTushujieyueInfo() {
+                axios.get("/tushuxinxiInfo/" + this.tushuxinxiid).then(res => {
+                    if (res.data.code === '0') {
+                        const tushuxinxi = res.data.data;
+                        this.entity = {tushubianhao:tushuxinxi.tushubianhao,mingcheng:tushuxinxi.mingcheng,zuozhe:tushuxinxi.zuozhe,chubanshe:tushuxinxi.chubanshe,chubannianfen:tushuxinxi.chubannianfen,kucun:tushuxinxi.kucun}
+						if (this.user.level === "老年人"){this.entity.jieyueren = this.user.yonghuming;}
+                        //ssxessioxnduqxu
+						//zidoxngbianxhao
+                    } else {
+                        alert(res.data.msg);
+                    }
+                });
+            },
+            //yofujifsuan2
+            update() {
+                if (checkValid(this.entity)) {
+
+                    if (!this.entity.id) {
+                        axios.post(
+                            "/tushujieyueInfo", this.entity
+                        ).then(res => {
+                            if (res.data.code === '0') {
+                                msg('success', '添加成功');
+                                $('#mod').modal('hide');
+                                this.loadTable(1);
+                            } else {
+                                msg('error', res.data.msg);
+                            }
+                        })
+                    }
+                }
+            },
+			getQueryVariable(variable) {
+                let query = window.location.search.substring(1);
+                let vars = query.split("&");
+                for (let i = 0; i < vars.length; i++) {
+                    let pair = vars[i].split("=");
+                    if (pair[0] === variable) {
+                        return pair[1];
+                    }
+                }
+                return '';
+            },
+            //m_tupiansccsbaul
+           
+            //youscwenjian
+
+            //x2suilafuxzhi
+            logout() {
+                logout();
+            }
+        }
+    })
+</script>
+</body>
+</html>
